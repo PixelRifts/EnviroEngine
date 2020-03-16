@@ -34,6 +34,12 @@ public abstract class Shader implements IBindable
 	}
 	
 	
+	protected void loadInt(String var, int value)
+	{
+		int location = glGetUniformLocation(programID, var);
+		glUniform1i(location, value);
+	}
+
 	protected void loadFloat(String var, float value)
 	{
 		int location = glGetUniformLocation(programID, var);

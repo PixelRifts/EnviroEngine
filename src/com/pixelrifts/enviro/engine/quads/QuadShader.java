@@ -14,6 +14,6 @@ public class QuadShader extends Shader {
 
 	@Override
 	public void load(Object... objs) {
-		
+		super.loadInt("u_TextureSampler", (int) objs[0]);
 	}
 }

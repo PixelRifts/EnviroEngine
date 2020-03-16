@@ -14,17 +14,11 @@ public class Colour {
 	}
 
 	public Colour(final float r, final float g, final float b) {
-		this.r = Mathf.Clamp(r, 0, 1);
-		this.g = Mathf.Clamp(g, 0, 1);
-		this.b = Mathf.Clamp(b, 0, 1);
-		this.a = 1;
+		this(r, g, b, 1);
 	}
 
 	public Colour() {
-		this.r = 1;
-		this.g = 1;
-		this.b = 1;
-		this.a = 1;
+		this(1, 1, 1, 1);
 	}
 
 	public static Colour Black() {

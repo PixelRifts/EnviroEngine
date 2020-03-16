@@ -3,16 +3,16 @@ package com.pixelrifts.enviro.engine.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL30;
 
 import com.pixelrifts.enviro.engine.rendering.Shader;
+import com.pixelrifts.enviro.engine.rendering.Texture;
 
 public class Cleaner {
 	private static List<Integer> vaos;
 	private static List<Integer> vbos;
-	private static List<Integer> textures;
+	private static List<Texture> textures;
 	private static List<Shader> shaders;
 	
 	static {
@@ -30,8 +30,8 @@ public class Cleaner {
 		vbos.add(vboID);
 	}
 	
-	public static void AddTexture(int textureID) {
-		textures.add(textureID);
+	public static void AddTexture(Texture texture) {
+		textures.add(texture);
 	}
 	
 	public static void AddShader(Shader shader) {
@@ -41,7 +41,7 @@ public class Cleaner {
 	public static void CleanUp() {
 		for (int vao : vaos) GL30.glDeleteVertexArrays(vao);
 		for (int vbo : vbos) GL15.glDeleteBuffers(vbo);
-		for (int tex : textures) GL11.glDeleteTextures(tex);
+		for (Texture tex : textures) tex.cleanUp();
 		for (Shader shader : shaders) shader.cleanUp();
 	}
 }

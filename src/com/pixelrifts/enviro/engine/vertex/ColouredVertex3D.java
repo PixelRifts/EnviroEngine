@@ -4,21 +4,12 @@ import org.joml.Vector3f;
 
 import com.pixelrifts.enviro.engine.util.Colour;
 
-public class ColouredVertex3D {
-	private Vector3f position;
+public class ColouredVertex3D extends Vertex3D {
 	private Colour colour;
 
 	public ColouredVertex3D(Vector3f position, Colour colour) {
-		this.position = position;
+		super(position);
 		this.colour = colour;
-	}
-
-	public Vector3f getPosition() {
-		return position;
-	}
-
-	public void setPosition(Vector3f position) {
-		this.position = position;
 	}
 
 	public Colour getColour() {
@@ -28,9 +19,8 @@ public class ColouredVertex3D {
 	public void setColour(Colour colour) {
 		this.colour = colour;
 	}
-	
 
-	public float[] getOrderedPositions() {
-		return new float[] { position.x, position.y, position.z };
+	public float[] getOrderedColours() {
+		return new float[] { colour.r, colour.g, colour.b, colour.a };
 	}
 }

@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
 import com.pixelrifts.enviro.engine.interfaces.IRenderer;
+import com.pixelrifts.enviro.engine.util.Colour;
 
 public class Display {
 	private static long win;
@@ -79,6 +80,10 @@ public class Display {
 
 	public static void setBackground(float r, float g, float b, float a) {
 		GL11.glClearColor(r, g, b, a);
+	}
+
+	public static void setBackground(Colour c) {
+		GL11.glClearColor(c.r, c.g, c.b, c.a);
 	}
 
 	public static float getDelta() {

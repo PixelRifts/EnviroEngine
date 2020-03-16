@@ -13,10 +13,19 @@ import org.lwjgl.BufferUtils;
 import com.pixelrifts.enviro.engine.util.Cleaner;
 
 public class Loader {
-	public static RawMesh loadColouredQuadToVAO(float[] vertices, float[] colours, int[] indices) {
+	private static final float[] whiteQuadColours = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, };
+
+	public static RawMesh loadQuadToVAO(float[] vertices, float[] colours, float[] uvs, int[] indices) {
 		int vaoID = createVAO();
+
 		storeDataInAttribute(0, 2, vertices);
-		storeDataInAttribute(1, 4, colours);
+		if (colours != null)
+			storeDataInAttribute(1, 4, colours);
+		else
+			storeDataInAttribute(1, 4, whiteQuadColours);
+		if (uvs != null)
+			storeDataInAttribute(2, 2, uvs);
+
 		unbindVAO();
 		int iboID = createIBO(indices);
 		return new RawMesh(vaoID, indices.length, iboID);
@@ -40,7 +49,7 @@ public class Loader {
 	private static void unbindVAO() {
 		glBindVertexArray(0);
 	}
-	
+
 	private static int createIBO(int[] data) {
 		int vboID = glGenBuffers();
 		Cleaner.AddVBO(vboID);
@@ -48,7 +57,7 @@ public class Loader {
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, createBuffer(data), GL_STATIC_DRAW);
 		return vboID;
 	}
-	
+
 	private static FloatBuffer createBuffer(float[] data) {
 		FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
 		buffer.put(data);

@@ -7,11 +7,15 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
 import com.pixelrifts.enviro.engine.interfaces.IRenderer;
-import com.pixelrifts.enviro.engine.util.Colour;
+import com.pixelrifts.enviro.engine.math.Colour;
+import com.pixelrifts.enviro.engine.rendering.Texture;
+import com.pixelrifts.enviro.engine.util.TextureUtils;
 
 public class Display {
+	public static Texture whiteTexture;
+	public static int displaywidth, displayheight;
+	
 	private static long win;
-	private static int displaywidth, displayheight;
 	private static float last = 0, now = System.nanoTime(), delta = 0;
 	private static boolean hasResized;
 	private static GLFWWindowSizeCallback windowsizeCallback;
@@ -40,6 +44,14 @@ public class Display {
 			}
 		};
 		glfwSetWindowSizeCallback(win, windowsizeCallback);
+		
+		createWhiteTexture();
+	}
+
+	private static void createWhiteTexture() {
+		whiteTexture = new Texture("./res/textures/White.png");
+		TextureUtils.ActivateBank(0);
+		whiteTexture.bind();
 	}
 
 	public static void clear() {

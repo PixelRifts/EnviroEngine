@@ -2,7 +2,7 @@ package com.pixelrifts.enviro.engine.vertex;
 
 import org.joml.Vector2f;
 
-import com.pixelrifts.enviro.engine.util.Colour;
+import com.pixelrifts.enviro.engine.math.Colour;
 
 public class ColouredVertex2D extends Vertex2D {
 	private Colour colour;

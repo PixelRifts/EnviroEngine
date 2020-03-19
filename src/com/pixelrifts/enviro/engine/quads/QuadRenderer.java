@@ -5,7 +5,6 @@ import static org.lwjgl.opengl.GL11.*;
 import com.pixelrifts.enviro.engine.batch.Batch;
 import com.pixelrifts.enviro.engine.interfaces.IRenderer;
 import com.pixelrifts.enviro.engine.rendering.Shader;
-import com.pixelrifts.enviro.engine.util.TextureUtils;
 
 public class QuadRenderer implements IRenderer<Quad> {
 	private QuadShader shader;
@@ -18,8 +17,6 @@ public class QuadRenderer implements IRenderer<Quad> {
 	
 	@Override
 	public void prepare() {
-		TextureUtils.ActivateBank(0);
-		whiteTexture.bind();
 		glDisable(GL_CULL_FACE);
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
@@ -36,10 +33,8 @@ public class QuadRenderer implements IRenderer<Quad> {
 	
 	private void process(Quad q) {
 		q.bind();
-		if (q instanceof ColouredQuad)
-			shader.load(0);
-		else
-			shader.load(1);
+		if (q instanceof ColouredQuad) shader.load(0);
+		else shader.load(1);
 		q.render();
 		q.unbind();
 	}

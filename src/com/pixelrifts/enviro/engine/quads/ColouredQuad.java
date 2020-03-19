@@ -3,7 +3,7 @@ package com.pixelrifts.enviro.engine.quads;
 import org.joml.Vector2f;
 
 import com.pixelrifts.enviro.engine.base.Loader;
-import com.pixelrifts.enviro.engine.util.Colour;
+import com.pixelrifts.enviro.engine.math.Colour;
 import com.pixelrifts.enviro.engine.util.Utils;
 import com.pixelrifts.enviro.engine.vertex.ColouredVertex2D;
 

@@ -13,6 +13,7 @@ import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
 
 import com.pixelrifts.enviro.engine.interfaces.IBindable;
+import com.pixelrifts.enviro.engine.util.Cleaner;
 
 public abstract class Shader implements IBindable
 {
@@ -31,6 +32,7 @@ public abstract class Shader implements IBindable
 		glAttachShader(programID, fragmentShaderID);
 		glLinkProgram(programID);
 		glValidateProgram(programID);
+		Cleaner.AddShader(this);
 	}
 	
 	
@@ -62,7 +64,6 @@ public abstract class Shader implements IBindable
 	{
 		int location = glGetUniformLocation(programID, var);
 		mat.get(matBuffer);
-		matBuffer.flip();
 		glUniformMatrix4fv(location, false, matBuffer);
 	}
 	

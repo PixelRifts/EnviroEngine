@@ -8,10 +8,11 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 
+import com.pixelrifts.enviro.engine.interfaces.IBindable;
 import com.pixelrifts.enviro.engine.util.Cleaner;
 import com.pixelrifts.enviro.engine.util.TextureUtils;
 
-public class Texture
+public class Texture implements IBindable
 {
 	private int width, height;
 	private int texture;
@@ -47,12 +48,14 @@ public class Texture
 		stbi_image_free(data);
 	}
 
+	@Override
 	public void bind()
 	{
 		texturebank = TextureUtils.GetActiveBank();
 		glBindTexture(GL_TEXTURE_2D, texture);
 	}
 
+	@Override
 	public void unbind()
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);

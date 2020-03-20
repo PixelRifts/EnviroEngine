@@ -8,10 +8,10 @@ public interface IRenderer<T extends IRenderable> {
 	public void render();
 	
 	public void submit(T obj);
-	
+		
 	public Batch<T> getBatch();
 	public Shader getShader();
-
+	
 	default void clear() {
 		getBatch().clear();
 	}

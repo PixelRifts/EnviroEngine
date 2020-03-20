@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pixelrifts.enviro.engine.interfaces.IRenderable;
-import com.pixelrifts.enviro.engine.interfaces.Processor;
+import com.pixelrifts.enviro.engine.interfaces.IProcessor;
 
 public class Batch<T extends IRenderable> {
 	private List<T> batch;
@@ -40,13 +40,13 @@ public class Batch<T extends IRenderable> {
 		return batch;
 	}
 	
-	public void foreach(Processor<T> processor) {
+	public void foreach(IProcessor<T> processor) {
 		for (T t : batch) {
 			processor.process(t);
 		}
 	}
 	
-	public boolean process(Processor<T> processor, int index) {
+	public boolean process(IProcessor<T> processor, int index) {
 		if (index > batch.size() - 1 || index < 0) return false;
 		processor.process(batch.get(index));
 		remove(index);

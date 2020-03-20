@@ -5,7 +5,7 @@ import org.joml.Vector2f;
 import com.pixelrifts.enviro.engine.base.Loader;
 import com.pixelrifts.enviro.engine.rendering.Texture;
 import com.pixelrifts.enviro.engine.util.TextureUtils;
-import com.pixelrifts.enviro.engine.util.Utils;
+import com.pixelrifts.enviro.engine.util.ArrayUtils;
 import com.pixelrifts.enviro.engine.vertex.TexturedVertex2D;
 
 public class TexturedQuad extends Quad {
@@ -30,8 +30,8 @@ public class TexturedQuad extends Quad {
 		br = new TexturedVertex2D(new Vector2f(x + width, y), uvbr);
 		tr = new TexturedVertex2D(new Vector2f(x + width, y + height), uvtr);
 		
-		float[] vertices = Utils.concat(tl.getOrderedPositions(), Utils.concat(bl.getOrderedPositions(), Utils.concat(br.getOrderedPositions(), tr.getOrderedPositions())));
-		float[] uvs = Utils.concat(tl.getOrderedUVs(), Utils.concat(bl.getOrderedUVs(), Utils.concat(br.getOrderedUVs(), tr.getOrderedUVs())));
+		float[] vertices = ArrayUtils.concat(tl.getOrderedPositions(), ArrayUtils.concat(bl.getOrderedPositions(), ArrayUtils.concat(br.getOrderedPositions(), tr.getOrderedPositions())));
+		float[] uvs = ArrayUtils.concat(tl.getOrderedUVs(), ArrayUtils.concat(bl.getOrderedUVs(), ArrayUtils.concat(br.getOrderedUVs(), tr.getOrderedUVs())));
 		super.mesh = Loader.loadQuadToVAO(vertices, null, uvs, quadIndices);
 	}
 

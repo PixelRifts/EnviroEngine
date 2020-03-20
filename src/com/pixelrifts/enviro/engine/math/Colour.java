@@ -50,7 +50,7 @@ public class Colour {
 	}
 
 	public static Colour Green() {
-		return new Colour(0, 1, 0);
+		return new Colour(0, 0.5f, 0);
 	}
 
 	public static Colour Lime() {

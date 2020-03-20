@@ -4,7 +4,7 @@ import org.joml.Vector2f;
 
 import com.pixelrifts.enviro.engine.base.Loader;
 import com.pixelrifts.enviro.engine.math.Colour;
-import com.pixelrifts.enviro.engine.util.Utils;
+import com.pixelrifts.enviro.engine.util.ArrayUtils;
 import com.pixelrifts.enviro.engine.vertex.ColouredVertex2D;
 
 public class ColouredQuad extends Quad {
@@ -24,8 +24,8 @@ public class ColouredQuad extends Quad {
 		br = new ColouredVertex2D(new Vector2f(x + width, y), cbr);
 		tr = new ColouredVertex2D(new Vector2f(x + width, y + height), ctr);
 		
-		float[] positions = Utils.concat(tl.getOrderedPositions(), Utils.concat(bl.getOrderedPositions(), Utils.concat(br.getOrderedPositions(), tr.getOrderedPositions())));
-		float[] colours = Utils.concat(tl.getOrderedColours(), Utils.concat(bl.getOrderedColours(), Utils.concat(br.getOrderedColours(), tr.getOrderedColours())));
+		float[] positions = ArrayUtils.concat(tl.getOrderedPositions(), ArrayUtils.concat(bl.getOrderedPositions(), ArrayUtils.concat(br.getOrderedPositions(), tr.getOrderedPositions())));
+		float[] colours = ArrayUtils.concat(tl.getOrderedColours(), ArrayUtils.concat(bl.getOrderedColours(), ArrayUtils.concat(br.getOrderedColours(), tr.getOrderedColours())));
 		super.mesh = Loader.loadQuadToVAO(positions, colours, null, quadIndices);
 	}
 }

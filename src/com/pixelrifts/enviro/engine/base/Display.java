@@ -88,7 +88,7 @@ public class Display {
 		testResize();
 		hasResized = false;
 		Camera.instance.applyTransfer(Camera.instance.mover.move());
-
+		 
 		for (IRenderer<?> renderer : renderers) {
 			renderer.prepare();
 			renderer.render();

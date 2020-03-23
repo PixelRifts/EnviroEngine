@@ -48,9 +48,4 @@ public class QuadRenderer implements IRenderer<Quad> {
 	public Shader getShader() {
 		return shader;
 	}
-
-	@Override
-	public void submit(Quad obj) {
-		batch.add(obj);
-	}
 }

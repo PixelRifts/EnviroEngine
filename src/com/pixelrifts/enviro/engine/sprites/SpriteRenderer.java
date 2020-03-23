@@ -42,11 +42,6 @@ public class SpriteRenderer implements IRenderer<Sprite> {
 	}
 
 	@Override
-	public void submit(Sprite obj) {
-		batch.add(obj);
-	}
-
-	@Override
 	public Batch<Sprite> getBatch() {
 		return batch;
 	}

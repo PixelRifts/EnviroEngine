@@ -34,10 +34,10 @@ public class Loader {
 	
 	public static TexturedMesh loadSpriteToVAO(float x, float y, float width, float height, Texture t) {
 		float[] vertices = {
-				x, y + height,
-				x, y,
-				x + width, y,
-				x + width, y + height
+				x - width / 2, y + height / 2,
+				x - width / 2, y - height / 2,
+				x + width / 2, y - height / 2,
+				x + width / 2, y + height / 2,
 		};
 		
 		float[] uvs = {

@@ -7,7 +7,9 @@ public interface IRenderer<T extends IRenderable> {
 	public void prepare();
 	public void render();
 	
-	public void submit(T obj);
+	default void submit(T obj) {
+		getBatch().add(obj);
+	}
 		
 	public Batch<T> getBatch();
 	public Shader getShader();

@@ -1,6 +1,7 @@
 package com.pixelrifts.enviro.engine.rendering;
 
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
@@ -11,9 +12,9 @@ import com.pixelrifts.enviro.engine.math.CamTransfer;
 import com.pixelrifts.enviro.engine.math.Transform2D;
 
 public class Camera {
-	public static final Camera instance = new Camera(new Vector3f(), 0);
+	public static final Camera instance = new Camera(new Vector2f(), 0);
 	
-	private Vector3f position;
+	private Vector2f position;
 	private float rotation;
 	private float left;
 	private float right;
@@ -30,8 +31,15 @@ public class Camera {
 	
 	private static final Keyboard keyboard = Keyboard.instance;
 	private static final float BASIC_SPEED = 0.2f;
+
+	private static final Matrix4f UIProjection = new Matrix4f();
 	
-	private Camera(Vector3f position, float rotation) {
+	static {
+		UIProjection.identity();
+		UIProjection.ortho(0, Display.displaywidth, 0, Display.displayheight, 0, 1000);
+	}
+	
+	private Camera(Vector2f position, float rotation) {
 		this.position = position;
 		this.rotation = rotation;
 		projectionMatrix = new Matrix4f();
@@ -49,11 +57,11 @@ public class Camera {
 		calculateViewMatrix();
 	}
 	
-	public Vector3f getPosition() {
+	public Vector2f getPosition() {
 		return position;
 	}
 
-	public void setPosition(Vector3f position) {
+	public void setPosition(Vector2f position) {
 		this.position = position;
 	}
 
@@ -66,7 +74,7 @@ public class Camera {
 	}
 
 	public CamTransfer basicMove() {
-		Vector3f position = new Vector3f();
+		Vector2f position = new Vector2f();
 		float rotation = 0;
 		if (keyboard.isKeyDown(GLFW.GLFW_KEY_W)) {
 			position.y += BASIC_SPEED;
@@ -115,5 +123,9 @@ public class Camera {
 	
 	public Matrix4f getProjectionMatrix() {
 		return projectionMatrix;
+	}
+	
+	public static Matrix4f getUIProjection() {
+		return UIProjection;
 	}
 }

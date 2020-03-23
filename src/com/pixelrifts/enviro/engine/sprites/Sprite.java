@@ -1,46 +1,51 @@
 package com.pixelrifts.enviro.engine.sprites;
 
+import org.joml.Vector2f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL30;
 
 import com.pixelrifts.enviro.engine.base.Loader;
 import com.pixelrifts.enviro.engine.base.TexturedMesh;
+import com.pixelrifts.enviro.engine.events.EventData;
 import com.pixelrifts.enviro.engine.interfaces.IBindable;
 import com.pixelrifts.enviro.engine.interfaces.IRenderable;
+import com.pixelrifts.enviro.engine.math.Rectangle;
 import com.pixelrifts.enviro.engine.math.Transform2D;
 import com.pixelrifts.enviro.engine.rendering.Texture;
 
 public class Sprite implements IBindable, IRenderable {
-	private TexturedMesh mesh;
-	
-	private float width;
-	private float height;
-	
-	private Transform2D transform;
-	
-	public Sprite(float x, float y, float width, float height, Texture t, Transform2D transform) {
-		this.width = width;
-		this.height = height;
-		
-		this.mesh = Loader.loadSpriteToVAO(x, y, width, height, t);
+	protected TexturedMesh mesh;
+	protected float width;
+	protected float height;
+	protected Transform2D transform;
+
+	public Sprite(Rectangle bounds, Texture t, Transform2D transform) {
+		this.width = bounds.getWidth();
+		this.height = bounds.getHeight();
+
+		this.mesh = Loader.loadSpriteToVAO(bounds.getX(), bounds.getY(), width, height, t);
 		this.transform = transform;
 	}
-	
+
+	public void translate(Vector2f d) {
+		transform.translate(d);
+	}
+
+	public void rotate(float r) {
+		transform.rotate(r);
+	}
+
+	public void scale(Vector2f s) {
+		transform.scale(s);
+	}
+
 	public float getWidth() {
 		return width;
 	}
 
-	public void setWidth(float width) {
-		this.width = width;
-	}
-
 	public float getHeight() {
 		return height;
-	}
-
-	public void setHeight(float height) {
-		this.height = height;
 	}
 
 	public Transform2D getTransform() {
@@ -53,6 +58,9 @@ public class Sprite implements IBindable, IRenderable {
 	
 	public int getTexUnit() {
 		return 2;
+	}
+	public void OnCollision(EventData data) {
+		System.out.println("HI");
 	}
 
 	@Override
